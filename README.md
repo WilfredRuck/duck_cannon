@@ -31,6 +31,7 @@ Duckannon is a game where the player shoots a duck out of a cannon and gains a s
     <li>`cannon.js`: this script will house the physics logic for the cannon</li>
     <li>`duck.js`: this script will house the physics logic for the duck</li>
     <li>`audio.js`: this script will handle the audio logic</li>
+    <li>`obstacle.js`: this script will handle the physics logic of the various obstacles the duck may interact with</li>
   </ul>
   
 ## Implementation Timeline

@@ -1,0 +1,19 @@
+{
+  "name": "duckannon",
+  "version": "1.0.0",
+  "description": "Duckannon is a game where the player shoots a duck out of a cannon and gains a score based on how far they get.",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack": "^4.29.2",
+    "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch --mode=development",
+    "postinstall": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

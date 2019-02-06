@@ -5,7 +5,7 @@ body {
 
 #game-canvas {
   height: 500px;
-  width: 800px;
-  background-color: rgb(170, 163, 163);
-  margin-top: 50px;
+  width: 700px;
+  margin-top: 15vh;
+  border: 5px solid #000;
 }

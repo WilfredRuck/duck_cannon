@@ -13,7 +13,7 @@ class Duck {
 
   drawDuck() {
     this.ctx.clearRect(this.posX - 10, this.posY - 10, 2000, 500);
-    this.ctx.drawImage(this.image, this.posX - 10, this.posY - 10, 20, 20);
+    this.ctx.drawImage(this.image, this.posX - 10, this.posY - 10, 30, 60);
     console.log("flying..."); 
     if ((this.posY + 3) + this.y > this.ctx.height || (this.posY - 3) + this.y < 0) {
       this.y = -(this.y);

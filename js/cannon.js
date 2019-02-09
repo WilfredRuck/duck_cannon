@@ -15,7 +15,7 @@ class Cannon {
   drawCannon() {
     const ctx = this.ctx;
     let deltaY = this.deltaY;
-    ctx.clearRect(0, 0, 2000, 500);
+    ctx.clearRect(0, 0, 700, 500);
 
     // cannon arm (movable)
     ctx.beginPath();
@@ -54,11 +54,11 @@ class Cannon {
 
     switch(e.keyCode) {
       case 38:
-        this.deltaY -= 2;
+        this.deltaY -= 3;
       // up key
         break;
       case 40:
-        this.deltaY += 2;
+        this.deltaY += 3;
       // down key
         break;
       case 32:

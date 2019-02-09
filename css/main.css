@@ -2,13 +2,12 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 30vh;
-  height: 100%;
 }
 
 #game-canvas {
   height: 100%;
   width: 2000px;
-  background-image: url('https://i.ibb.co/SNmqL6h/sky.jpg');
+  background-image: url('https://i.ibb.co/YBqBGyX/grass-background.jpg');
   background-size: contain;
 }
 

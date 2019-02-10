@@ -3,7 +3,6 @@ import Duck from './duck.js';
 class Cannon {
   constructor(ctx, color = "grey") {
     this.color = color;
-    this.velocity = [10,10];
     this.ctx = ctx;
     this.deltaY = 0;
     this.drawCannon();
@@ -54,11 +53,11 @@ class Cannon {
 
     switch(e.keyCode) {
       case 38:
-        this.deltaY -= 3;
+        this.deltaY -= 15;
       // up key
         break;
       case 40:
-        this.deltaY += 3;
+        this.deltaY += 15;
       // down key
         break;
       case 32:

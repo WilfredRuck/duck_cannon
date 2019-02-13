@@ -30,13 +30,14 @@ class Duck {
   }
 
   drawDuck() {
-    this.ctx.clearRect(this.posX, this.posY, 30, 60);
+    // this.prevGravitySpeed = this.gra
+    this.ctx.clearRect(this.posX - this.vx, this.posY - this.vy, 30, 60);
     this.ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
     this.gravitySpeed += this.gravity;
     this.vx *= this.friction;
     this.vy *= this.friction;
     this.posX += this.vx;
-    this.posY += this.vy + this.gravitySpeed;
+    this.posY += this.vy;
     this.hitBottom();
     this.scrollWrapper();
     // requestAnimationFrame(this.drawDuck);

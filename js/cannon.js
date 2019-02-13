@@ -46,7 +46,7 @@ class Cannon {
   }
 
   endKeypress() {
-    document.removeEventListener("keydown", this.cannonArm.bind(this))
+    document.removeEventListener("keydown", this.cannonArm.bind(this), false)
   }
 
   cannonArm(e) {

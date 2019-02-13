@@ -13,7 +13,7 @@ body {
 
 #game-canvas {
   height: 100%;
-  width: 2000px;
+  width: 5000px;
   background-image: url('https://i.ibb.co/YBqBGyX/grass-background.jpg');
   background-size: contain;
 }

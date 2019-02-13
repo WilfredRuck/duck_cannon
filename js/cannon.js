@@ -10,9 +10,11 @@ class Cannon {
     this.play();
     this.lastX = 80;
     this.lastY = 250;
-    this.power = [0.5, 1, 1.5, 2];
-    this.currentPower = 0.5;
-    setInterval(this.drawCannon(), 10);
+    this.powerArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    this.idx = 0;
+    this.currentPower = this.powerArr[this.idx];
+    this.drawCannon();
+    this.cannonInterval = setInterval(() => this.drawCannon(), 150);
   }
 
   drawCannon() {
@@ -27,25 +29,32 @@ class Cannon {
     let y = 250 + deltaY;
     ctx.lineTo(x, y);
     ctx.closePath();
+    ctx.beginPath();
+    ctx.moveTo(30, 350);
+    ctx.lineTo(x, y);
+    ctx.closePath();
     ctx.strokeStyle = "black";
     ctx.fillStyle = this.color;
     ctx.fill();
     ctx.stroke();
-    console.log(x, y);
     this.lastX = x;
     this.lastY = y;
-
     // cannon body
     ctx.fillStyle = this.color;
     ctx.fillRect(0, 250, 60, 250);
-
-    const power = this.power;
-    this.currentPower = power[Math.floor(Math.random() * power.length)];
+    if (this.idx + 1 > this.powerArr.length - 1) {
+      this.idx = 0
+    } else {
+      this.idx ++;
+    }
+    this.currentPower = this.powerArr[this.idx];
     ctx.fillStyle = "#fff";
     ctx.font = "10px status-bar";
     ctx.fillText("Power Level", 5, 380);
     ctx.font = "15px status-bar";
     ctx.fillText(this.currentPower, 20, 400);
+    ctx.fillRect(634, 495, 30, 5);
+    ctx.fillRect(271, 495, 30, 5);
   }
 
   play() {
@@ -54,6 +63,7 @@ class Cannon {
 
   shoot() {
     this.endKeypress();
+    clearInterval(this.cannonInterval);
     new Duck(this.ctx, this.lastX, this.lastY, this.currentPower);
   }
 
@@ -65,11 +75,11 @@ class Cannon {
 
     switch(e.keyCode) {
       case 38:
-        this.deltaY -= 15;
+        this.deltaY -= 5;
       // up key
         break;
       case 40:
-        this.deltaY += 15;
+        this.deltaY += 5;
       // down key
         break;
       case 32:

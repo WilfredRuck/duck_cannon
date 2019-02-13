@@ -5,12 +5,13 @@ class Duck {
     this.startX = startX;
     this.posX = startX;
     this.posY = startY;
-    this.friction = 0.99;
+    this.friction = 0.99999;
+    this.power = power;
     this.vx = power; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
-    this.gravity = 0.1;
+    this.gravity = 0.01; 
     this.gravitySpeed = 1;
-    this.bounce = 0.01;
+    this.bounce = 0.1;
     this.image = new Image();
     this.bg = new Image();
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
@@ -29,9 +30,14 @@ class Duck {
   hitBottom() {
     const bottom = 440;
     if (this.posY > bottom) {
+      console.log(this.posX, this.posY);
       this.posY = bottom;
+      if (Math.floor(this.posX) === 634 || Math.floor(this.posX) === 271) {
+        // debugger
+        this.vx = this.vx * 23;
+      } 
       this.gravitySpeed = -(this.gravitySpeed * this.bounce);
-      if (this.vx < 0.03) {
+      if (this.vx < 0.02) {
         this.gameOver(this.score);
       }
     }
@@ -39,11 +45,13 @@ class Duck {
 
   drawDuck() {
     const ctx = this.ctx;
-    console.log(this.posX);
+    // console.log(this.posX, this.posY);
     this.score = Math.floor(this.posX - this.startX);
     ctx.clearRect(0, 0, 700, 500);
     ctx.drawImage(this.bg, 0, 0, 700, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
+    ctx.fillRect(634, 495, 30, 5);
+    ctx.fillRect(271, 495, 30, 5);
     this.gravitySpeed += this.gravity;
     this.vx *= this.friction;
     this.vy *= this.friction;
@@ -58,7 +66,8 @@ class Duck {
     ctx.fillstyle = "#000";
     ctx.font = "20px status-bar";
     ctx.fillText("Score: " + this.score, 20, 20);
-    ctx.fillText("Speed: " + this.vx, 20, 40);
+    ctx.fillText("Power: " + this.power, 20, 60);
+    this.scrollWrapper();
     requestAnimationFrame(this.drawDuck);
   }
 
@@ -66,19 +75,19 @@ class Duck {
     this.over = true;
     const ctx = this.ctx;
     ctx.font = "30px bolder black status-bar";
-    ctx.fillText("Final Score: " + score, 250, 250);
-    setTimeout(this.reload, 4000);
+    ctx.fillText("Final Score: " + score, 250, 200);
+    setTimeout(this.reload, 3000);
   }
 
   reload() {
     location.reload();
   }
 
-  // scrollWrapper(){
-  //   // if (this.posX * 2 > document.getElementById('wrapper').scrollLeft) {
-  //     document.getElementById('wrapper').scrollLeft += 2;
-  //   // }
-  // }
+  scrollWrapper(){
+    // if (this.posX * 2 > document.getElementById('wrapper').scrollLeft) {
+      document.getElementById('wrapper').scrollLeft = this.vx;
+    // }
+  }
 }
 
 export default Duck;

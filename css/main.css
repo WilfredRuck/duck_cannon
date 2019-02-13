@@ -12,18 +12,9 @@ body {
 }
 
 #game-canvas {
-  height: 100%;
-  width: 2000px;
-  background-image: url('https://i.ibb.co/YBqBGyX/grass-background.jpg');
-  background-size: contain;
-}
-
-#wrapper {
-  width: 900px;
   height: 400px;
+  width: 900px;
   box-shadow: 1px 1px 5px 5px;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 #directions {

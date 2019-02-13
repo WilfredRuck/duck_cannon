@@ -5,6 +5,8 @@ class Cannon {
     this.color = color;
     this.ctx = ctx;
     this.deltaY = 0;
+    this.bg = new Image();
+    this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
     this.drawCannon();
     this.play();
     this.lastX = 60;
@@ -15,7 +17,7 @@ class Cannon {
     const ctx = this.ctx;
     let deltaY = this.deltaY;
     ctx.clearRect(0, 0, 700, 500);
-
+    this.ctx.drawImage(this.bg, 0, 0, 700, 500);
     // cannon arm (movable)
     ctx.beginPath();
     ctx.moveTo(30 , 300);
@@ -33,7 +35,7 @@ class Cannon {
 
     // cannon body
     ctx.fillStyle = this.color;
-    ctx.fillRect(1, 250, 40, 250);
+    ctx.fillRect(0, 250, 40, 250);
   }
 
   play() {

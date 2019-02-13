@@ -1,12 +1,12 @@
 class Duck {
-  constructor(ctx, startX, startY) {
+  constructor(ctx, startX, startY, power) {
     this.ctx = ctx;
     this.score = 0;
     this.startX = startX;
     this.posX = startX;
     this.posY = startY;
     this.friction = 0.99;
-    this.vx = 2; // velocity of x axis (should be determined by power level when launched)
+    this.vx = power; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
     this.gravity = 0.1;
     this.gravitySpeed = 1;
@@ -56,7 +56,7 @@ class Duck {
     }
     // this.scrollWrapper();
     ctx.fillstyle = "#000";
-    ctx.font = "20px Verdana";
+    ctx.font = "20px status-bar";
     ctx.fillText("Score: " + this.score, 20, 20);
     ctx.fillText("Speed: " + this.vx, 20, 40);
     requestAnimationFrame(this.drawDuck);
@@ -65,7 +65,7 @@ class Duck {
   gameOver(score) {
     this.over = true;
     const ctx = this.ctx;
-    ctx.font = "30px Verdana";
+    ctx.font = "30px bolder black status-bar";
     ctx.fillText("Final Score: " + score, 250, 250);
     setTimeout(this.reload, 4000);
   }

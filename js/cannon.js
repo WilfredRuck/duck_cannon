@@ -7,10 +7,12 @@ class Cannon {
     this.deltaY = 0;
     this.bg = new Image();
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
-    this.drawCannon();
     this.play();
-    this.lastX = 60;
+    this.lastX = 80;
     this.lastY = 250;
+    this.power = [0.5, 1, 1.5, 2];
+    this.currentPower = 0.5;
+    setInterval(this.drawCannon(), 10);
   }
 
   drawCannon() {
@@ -21,7 +23,7 @@ class Cannon {
     // cannon arm (movable)
     ctx.beginPath();
     ctx.moveTo(30 , 300);
-    let x = 60;
+    let x = 90;
     let y = 250 + deltaY;
     ctx.lineTo(x, y);
     ctx.closePath();
@@ -35,7 +37,15 @@ class Cannon {
 
     // cannon body
     ctx.fillStyle = this.color;
-    ctx.fillRect(0, 250, 40, 250);
+    ctx.fillRect(0, 250, 60, 250);
+
+    const power = this.power;
+    this.currentPower = power[Math.floor(Math.random() * power.length)];
+    ctx.fillStyle = "#fff";
+    ctx.font = "10px status-bar";
+    ctx.fillText("Power Level", 5, 380);
+    ctx.font = "15px status-bar";
+    ctx.fillText(this.currentPower, 20, 400);
   }
 
   play() {
@@ -44,7 +54,7 @@ class Cannon {
 
   shoot() {
     this.endKeypress();
-    new Duck(this.ctx, this.lastX, this.lastY);
+    new Duck(this.ctx, this.lastX, this.lastY, this.currentPower);
   }
 
   endKeypress() {

@@ -5,7 +5,7 @@ class Duck {
     this.startX = startX;
     this.posX = startX;
     this.posY = startY;
-    this.friction = 0.99999;
+    this.friction = 0.99;
     this.power = power;
     this.vx = power; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
@@ -33,7 +33,6 @@ class Duck {
       console.log(this.posX, this.posY);
       this.posY = bottom;
       if (Math.floor(this.posX) === 634 || Math.floor(this.posX) === 271) {
-        // debugger
         this.vx = this.vx * 23;
       } 
       this.gravitySpeed = -(this.gravitySpeed * this.bounce);
@@ -47,8 +46,8 @@ class Duck {
     const ctx = this.ctx;
     // console.log(this.posX, this.posY);
     this.score = Math.floor(this.posX - this.startX);
-    ctx.clearRect(0, 0, 700, 500);
-    ctx.drawImage(this.bg, 0, 0, 700, 500);
+    ctx.clearRect(0, 0, 5000, 500);
+    // ctx.drawImage(this.bg, 0, 0, 700, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
     ctx.fillRect(634, 495, 30, 5);
     ctx.fillRect(271, 495, 30, 5);

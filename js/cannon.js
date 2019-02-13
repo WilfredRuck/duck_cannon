@@ -20,8 +20,8 @@ class Cannon {
   drawCannon() {
     const ctx = this.ctx;
     let deltaY = this.deltaY;
-    ctx.clearRect(0, 0, 700, 500);
-    this.ctx.drawImage(this.bg, 0, 0, 700, 500);
+    ctx.clearRect(0, 0, 5000, 400);
+    // this.ctx.drawImage(this.bg, 0, 0, 700, 500);
     // cannon arm (movable)
     ctx.beginPath();
     ctx.moveTo(30 , 300);

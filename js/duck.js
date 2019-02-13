@@ -5,7 +5,7 @@ class Duck {
     this.startX = startX;
     this.posX = startX;
     this.posY = startY;
-    this.friction = 0.99;
+    this.friction = 0.995;
     this.power = power;
     this.vx = power; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
@@ -64,8 +64,8 @@ class Duck {
     // this.scrollWrapper();
     ctx.fillstyle = "#000";
     ctx.font = "20px status-bar";
-    ctx.fillText("Score: " + this.score, 20, 20);
-    ctx.fillText("Power: " + this.power, 20, 60);
+    ctx.fillText("Score: " + this.score, 50, 20);
+    ctx.fillText("Power: " + this.power, 70, 60);
     this.scrollWrapper();
     requestAnimationFrame(this.drawDuck);
   }
@@ -84,7 +84,8 @@ class Duck {
 
   scrollWrapper(){
     // if (this.posX * 2 > document.getElementById('wrapper').scrollLeft) {
-      document.getElementById('wrapper').scrollLeft = this.vx;
+      document.getElementById('wrapper').scrollLeft = this.posX - 250;
+      console.log(this.vx);
     // }
   }
 }

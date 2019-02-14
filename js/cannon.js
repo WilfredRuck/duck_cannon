@@ -10,11 +10,9 @@ class Cannon {
     this.play();
     this.lastX = 80;
     this.lastY = 250;
-    // this.powerArr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
     this.changePower = -1;
     this.currentPower = 500;
     this.idx = 0;
-    // this.currentPower = this.powerArr[this.idx];
     this.drawCannon();
     this.cannonInterval = setInterval(() => this.drawCannon(), 10);
   }
@@ -23,7 +21,6 @@ class Cannon {
     const ctx = this.ctx;
     let deltaY = this.deltaY;
     ctx.clearRect(0, 0, 10000, 400);
-    // this.ctx.drawImage(this.bg, 0, 0, 700, 500);
     // cannon arm (movable)
     ctx.beginPath();
     ctx.moveTo(30 , 300);
@@ -44,12 +41,6 @@ class Cannon {
     // cannon body
     ctx.fillStyle = this.color;
     ctx.fillRect(0, 250, 60, 250);
-    // if (this.idx + 1 > this.powerArr.length - 1) {
-    //   this.idx = 0
-    // } else {
-    //   this.idx ++;
-    // }
-    // this.currentPower = this.powerArr[this.idx];
     ctx.fillStyle = "#fff";
     // ctx.font = "10px status-bar";
     // ctx.fillText("Power Level", 5, 380);

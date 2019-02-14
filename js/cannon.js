@@ -10,11 +10,13 @@ class Cannon {
     this.play();
     this.lastX = 80;
     this.lastY = 250;
-    this.powerArr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+    // this.powerArr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+    this.changePower = -1;
+    this.currentPower = 500;
     this.idx = 0;
-    this.currentPower = this.powerArr[this.idx];
+    // this.currentPower = this.powerArr[this.idx];
     this.drawCannon();
-    this.cannonInterval = setInterval(() => this.drawCannon(), 150);
+    this.cannonInterval = setInterval(() => this.drawCannon(), 10);
   }
 
   drawCannon() {
@@ -42,19 +44,23 @@ class Cannon {
     // cannon body
     ctx.fillStyle = this.color;
     ctx.fillRect(0, 250, 60, 250);
-    if (this.idx + 1 > this.powerArr.length - 1) {
-      this.idx = 0
-    } else {
-      this.idx ++;
-    }
-    this.currentPower = this.powerArr[this.idx];
+    // if (this.idx + 1 > this.powerArr.length - 1) {
+    //   this.idx = 0
+    // } else {
+    //   this.idx ++;
+    // }
+    // this.currentPower = this.powerArr[this.idx];
     ctx.fillStyle = "#fff";
-    ctx.font = "10px status-bar";
-    ctx.fillText("Power Level", 5, 380);
-    ctx.font = "15px status-bar";
-    ctx.fillText(this.currentPower, 20, 400);
+    // ctx.font = "10px status-bar";
+    // ctx.fillText("Power Level", 5, 380);
+    // ctx.font = "15px status-bar";
+    // ctx.fillText(this.currentPower, 20, 400);
     ctx.fillRect(634, 495, 30, 5);
     ctx.fillRect(271, 495, 30, 5);
+    ctx.fillRect(20, this.currentPower, 20, 230);
+    const pow = this.currentPower + this.changePower;
+    if ((pow === 469) || (pow === 501)) this.changePower = -(this.changePower);
+    this.currentPower += this.changePower;
   }
 
   play() {
@@ -64,7 +70,7 @@ class Cannon {
   shoot() {
     this.endKeypress();
     clearInterval(this.cannonInterval);
-    new Duck(this.ctx, this.lastX, this.lastY, this.currentPower);
+    new Duck(this.ctx, this.lastX, this.lastY, (500 - this.currentPower));
   }
 
   endKeypress() {

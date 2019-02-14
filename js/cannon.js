@@ -10,7 +10,7 @@ class Cannon {
     this.play();
     this.lastX = 80;
     this.lastY = 250;
-    this.powerArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    this.powerArr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
     this.idx = 0;
     this.currentPower = this.powerArr[this.idx];
     this.drawCannon();
@@ -20,7 +20,7 @@ class Cannon {
   drawCannon() {
     const ctx = this.ctx;
     let deltaY = this.deltaY;
-    ctx.clearRect(0, 0, 5000, 400);
+    ctx.clearRect(0, 0, 10000, 400);
     // this.ctx.drawImage(this.bg, 0, 0, 700, 500);
     // cannon arm (movable)
     ctx.beginPath();

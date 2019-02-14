@@ -14,9 +14,18 @@ class Duck {
     this.bounce = 0.08;
     this.image = new Image();
     this.bg = new Image();
+    this.spike1 = new Image();
+    this.spike2 = new Image();
+    this.spike3 = new Image();
+    this.spike4 = new Image();
+    this.spike1.src = "spike A.png";
+    this.spike2.src = "spike B.png";
+    this.spike3.src = "spike C.png";
+    this.spike4.src = "spike D.png";
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
     this.image.src = "https://i.ibb.co/vB4TtWT/storm-designz-rubber-duck.png";
     this.over = false;
+    this.obstacleInterval = setInterval(() => this.drawObstacle(), 1000);
     this.drawDuck = this.drawDuck.bind(this);
     this.drawDuck();
   }
@@ -40,10 +49,10 @@ class Duck {
   drawDuck() {
     const ctx = this.ctx;
     this.score = Math.floor(this.posX - this.startX);
-    ctx.clearRect(0, 0, 10000, 500);
+    const pastXPos = this.posX - this.vx;
+    const pastYPos = this.posY - this.vy - this.gravitySpeed;
+    ctx.clearRect(pastXPos, pastYPos, 10000, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
-    ctx.fillRect(634, 495, 30, 5);
-    ctx.fillRect(271, 495, 30, 5);
     this.gravitySpeed += this.gravity;
     this.vx *= this.friction;
     this.vy *= this.friction;
@@ -56,17 +65,32 @@ class Duck {
     }
     ctx.fillstyle = "black";
     ctx.font = "25px status-bar";
-    ctx.fillText("Score: " + this.score, this.posX - 200, 20);
-    ctx.fillText("Power: " + this.power, this.posX - 200, 40);
+    ctx.clearRect(this.posX + 100, 20, 10000, 500);
+    ctx.clearRect(this.posX + 100, 40, 10000, 500);
+    // ctx.fillText("Score: " + this.score, this.posX - 200, 20);
+    // ctx.fillText("Power: " + this.power, this.posX - 200, 40);
     this.scrollWrapper();
     requestAnimationFrame(this.drawDuck);
   }
 
+  drawObstacle() {
+    const ctx = this.ctx;
+    const screenLeft = this.posX - 250;
+    const screenRight = this.posX + 250;
+    const randomX = Math.floor((Math.random() * (screenRight - screenLeft) + screenLeft));
+    ctx.drawImage(this.spike1, randomX, 440, 30, 60);
+    ctx.fillRect(randomX + 50, 495, 30, 5);
+    console.log("SPIKE Created");
+    // console.log(Math.floor((Math.random() * ((this.posX + 250) + (this.posX - 250)) + (this.posX - 250))));
+  }
+
   gameOver(score) {
     this.over = true;
+    this.vx = 0;
     const ctx = this.ctx;
     ctx.font = "30px bolder status-bar";
     ctx.fillText("Final Score: " + score, this.posX, 200);
+    clearInterval(this.obstacleInterval);
     setTimeout(this.reload, 3000);
   }
 

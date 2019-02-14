@@ -45,7 +45,7 @@ class Duck {
         this.vx = this.vx * 23;
       } 
       this.gravitySpeed = -(this.gravitySpeed * this.bounce);
-      if (this.vx < 0.05) {
+      if ((this.vx < 0.05) || (this.posX > 700)) {
         this.gameOver(this.score);
       }
     }
@@ -58,7 +58,6 @@ class Duck {
     const pastYPos = this.posY - this.vy - this.gravitySpeed;
     ctx.clearRect(pastXPos, pastYPos, 10000, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
-    console.log(Math.floor(this.posX))
     // if (this.arr.includes(Math.floor(this.posX))) {
     //   // debugger
     //   this.gameOver(this.score);

@@ -11,9 +11,22 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+/* #wrapper {
+  height: 400px;
+  width: 2000px;
+  overflow-x: hidden; 
+  margin: 0 auto;
+}
+
+#game-canvas {
+  height: 400px;
+  width: 900px;
+  box-shadow: 1px 1px 5px 5px;
+} */
+
 #game-canvas {
   height: 100%;
-  width: 5000px;
+  width: 10000px;
   background-image: url('https://i.ibb.co/YBqBGyX/grass-background.jpg');
   background-size: contain;
 }

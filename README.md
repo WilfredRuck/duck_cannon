@@ -2,19 +2,20 @@
 
 ## Background and Overview
 
-Duckannon is a game where the player shoots a duck out of a cannon and gains a score based on how far they get. There will be different factors in play, such as the angle of the cannon before release, and the speed at time of launch(which will be displayed as it randomly increases and decreases). The goal is to find the best combination of angle and speed to obtain the furthest distance. There will also be various obstacles the duck may interact with as it bounces that will affect where the duck ends up stopping.
+Duckannon is a game where the player shoots a duck out of a cannon and gains a score based on how far they get. There will be different factors in play, such as the angle of the cannon before release, and the power level at time of launch(which will be displayed as it randomly increases and decreases). The goal is to find the best combination of angle and power to obtain the furthest distance. There will also be various obstacles the duck may interact with as it bounces that will affect where the duck ends up stopping.
     
 ## Functionality and MVP Features
   
   Players will be able to:
   - [ ] Start and restart game
   - [ ] Change cannon angle
-  - [ ] Hear sounds on collisions and when cannon moves/shoots
+  - [ ] Hear sound when cannon shoots
   - [ ] Shoot duck
-  - [ ] View speed of cannon
+  - [ ] View power of cannon
+  - [ ] View score at end of game
   
   Also:
-  - [ ] An About modal describing the basic functionality
+  - [ ] A section describing the basic functionality
     
 ## Architecture and Technologies
 
@@ -39,12 +40,12 @@ Duckannon is a game where the player shoots a duck out of a cannon and gains a s
   - [ ] Get webpack up and running
   - [ ] Determine what files I'll need, and write basic logic of each
   
-  <b>Day 2: </b>Create the basic simulation. Cannon should be able to move and duck should be able to launch and bounce. Cannon speed should be displayed. Goals for the day:
+  <b>Day 2: </b>Create the basic simulation. Cannon should be able to move and duck should be able to launch and bounce. Cannon power level should be displayed. Goals for the day:
   - [ ] Complete duck rendering and functionality
   - [ ] Complete cannon rendering and functionality
-  - [ ] Complete display of volatile speed
+  - [ ] Complete display of changing power level
   
-  <b>Day 3: </b>Duck should interact with random obstacles in the field. Player should be able to restart game. Goals for the day:
+  <b>Day 3: </b>Duck should interact with random obstacles in the field. Game should restart when finished. Goals for the day:
   - [ ] Implement obstacle/player collision.
   - [ ] Finish game over condition.
   
@@ -58,5 +59,5 @@ Duckannon is a game where the player shoots a duck out of a cannon and gains a s
   There are many directions in which this project could evolve.
    - [ ] Implement more interactive obstacles
    - [ ] Allow the user to customize the duck
-   - [ ] Add a leaderboard
+   - [ ] Add a leaderboard for scores
    - [ ] Allow user to add upgrades to cannon based on score

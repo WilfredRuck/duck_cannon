@@ -79,12 +79,10 @@ class Cannon {
         this.deltaY += 5;
       // down key
         break;
-      case 32:
-        this.shoot();
-        break;
+
     }
     if (e.keyCode === 32) {
-      this.shoot()
+      this.shoot();
     }
     else this.drawCannon();
   }

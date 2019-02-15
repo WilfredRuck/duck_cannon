@@ -28,6 +28,7 @@ class Cannon {
     ctx.fillText("Power", 5, 400);
     ctx.fillText("Level", 5, 420);
     ctx.font = "15px status-bar";
+    ctx.fillStyle = "red";
     ctx.fillRect(20, this.currentPower, 20, 230);
     const pow = this.currentPower + this.changePower;
     if ((pow === 469) || (pow === 501)) this.changePower = -(this.changePower);

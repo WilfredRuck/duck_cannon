@@ -34,7 +34,7 @@ class Duck {
     this.arr = [];
     const times = 5;
     for (let i = 0; i < times; i++) {
-      this.arr.push(Math.floor((Math.random() * (10000 - 500) + 500)));
+      this.arr.push(Math.floor((Math.random() * (9800 - 500) + 500)));
     }
     console.log(this.arr);
     this.drawDuck = this.drawDuck.bind(this);

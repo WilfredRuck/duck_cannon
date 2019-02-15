@@ -22,30 +22,18 @@ class Cannon {
     let deltaY = this.deltaY;
     ctx.clearRect(0, 0, 10000, 400);
     // cannon arm (movable)
-    ctx.beginPath();
-    ctx.moveTo(30 , 300);
-    let x = 90;
-    let y = 250 + deltaY;
-    ctx.lineTo(x, y);
-    ctx.closePath();
-    ctx.beginPath();
-    ctx.moveTo(30, 350);
-    ctx.lineTo(x, y);
-    ctx.closePath();
-    ctx.strokeStyle = "black";
-    ctx.fillStyle = this.color;
-    ctx.fill();
-    ctx.stroke();
-    this.lastX = x;
-    this.lastY = y;
+    ctx.fillStyle = "#000";
+    ctx.fillRect(50, 300, 100, 50);
+    // this.lastX = x;
+    // this.lastY = y;
     // cannon body
     ctx.fillStyle = this.color;
     ctx.fillRect(0, 250, 60, 250);
     ctx.fillStyle = "#fff";
-    // ctx.font = "10px status-bar";
-    // ctx.fillText("Power Level", 5, 380);
-    // ctx.font = "15px status-bar";
-    // ctx.fillText(this.currentPower, 20, 400);
+    ctx.font = "20px status-bar";
+    ctx.fillText("Power", 5, 400);
+    ctx.fillText("Level", 5, 420);
+    ctx.font = "15px status-bar";
     ctx.fillRect(634, 495, 30, 5);
     ctx.fillRect(271, 495, 30, 5);
     ctx.fillRect(20, this.currentPower, 20, 230);

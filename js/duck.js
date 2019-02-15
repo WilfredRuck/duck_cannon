@@ -34,7 +34,7 @@ class Duck {
     this.arr = [];
     const times = 5;
     for (let i = 0; i < times; i++) {
-      this.arr.push(Math.floor((Math.random() * (9800 - 500) + 500)));
+      this.arr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
     }
     console.log(this.arr);
     this.drawDuck = this.drawDuck.bind(this);
@@ -59,7 +59,7 @@ class Duck {
   }
 
   drawDuck() {
-    if(this.over) return null;
+    if (this.over) return null;
     console.log(this.posX);
     const ctx = this.ctx;
     this.score = Math.floor(this.posX - this.startX);
@@ -67,15 +67,14 @@ class Duck {
     const pastYPos = this.posY - this.vy - this.gravitySpeed;
     ctx.clearRect(pastXPos, pastYPos, 10000, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
+    
     this.collisionDetection();
-    // if (this.over) this.vx = 0;
-    // console.log(this.vx);
-    ctx.fillRect(634, 495, 30, 5);
-    ctx.fillRect(271, 495, 30, 5);
+    
     this.arr.forEach(randomX => {
       ctx.drawImage(this.spike2, randomX, 400, 30, 100);
       ctx.drawImage(this.troll, randomX, 0, 50, 60);
     });
+
     this.gravitySpeed += this.gravity;
     this.vx *= this.friction;
     this.vy *= this.friction;
@@ -116,8 +115,7 @@ class Duck {
     this.over = true;
     const ctx = this.ctx;
     ctx.font = "25px bold status-bar";
-    // ctx.fillRect(this.posX, 200, 260, 100);
-    ctx.fillStyle = ("black");
+    ctx.fillStyle = "black";
     ctx.fillText("Score: " + score, this.posX, 120);
     ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX, 140);
     ctx.font = "30px bolder status-bar";

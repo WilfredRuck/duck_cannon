@@ -45,7 +45,7 @@ class Duck {
         this.vx = this.vx * 23;
       } 
       this.gravitySpeed = -(this.gravitySpeed * this.bounce);
-      if ((this.vx < 0.05) || (this.posX > 700)) {
+      if ((this.vx < 0.05) || (this.posX > 10000)) {
         this.gameOver(this.score);
       }
     }
@@ -71,7 +71,7 @@ class Duck {
     this.vx *= this.friction;
     this.vy *= this.friction;
     this.posX += this.vx;
-    this.posY += this.vy;
+    this.posY += this.vy  + this.gravitySpeed;
     this.hitBottom();
     if (this.over) {
       cancelAnimationFrame(this.drawDuck);

@@ -49,7 +49,7 @@ class Cannon {
   shoot() {
     this.endKeypress();
     clearInterval(this.cannonInterval);
-    new Duck(this.ctx, this.lastX, this.lastY, (500 - this.currentPower));
+    new Duck(this.ctx, 150, 250, (500 - this.currentPower));
   }
 
   endKeypress() {

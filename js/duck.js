@@ -8,7 +8,7 @@ class Duck {
     this.posY = startY;
     this.friction = 0.999;
     this.power = power;
-    this.vx = 30; // velocity of x axis (should be determined by power level when launched)
+    this.vx = this.power; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
     this.gravity = 0.1; 
     this.gravitySpeed = 0.5;
@@ -32,7 +32,7 @@ class Duck {
     this.over = false;
 
     this.arr = [];
-    const times = 0;
+    const times = 5;
     for (let i = 0; i < times; i++) {
       this.arr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
     }

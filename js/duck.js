@@ -18,10 +18,12 @@ class Duck {
     this.spike2 = new Image();
     this.spike3 = new Image();
     this.spike4 = new Image();
+    this.blood = new Image();
     this.spike1.src = "spike A.png";
     this.spike2.src = "spike B.png";
     this.spike3.src = "spike C.png";
     this.spike4.src = "spike D.png";
+    this.blood.src = "blood.png";
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
     this.image.src = "https://i.ibb.co/vB4TtWT/storm-designz-rubber-duck.png";
     this.over = false;
@@ -59,17 +61,14 @@ class Duck {
     const pastYPos = this.posY - this.vy - this.gravitySpeed;
     ctx.clearRect(pastXPos, pastYPos, 10000, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
-    if (this.arr.includes(Math.floor(this.posX)) && this.posY >= 340) {
-      this.vx = 0;
-      this.gameOver(this.score);
-    }
+    this.collisionDetection();
     // if (this.over) this.vx = 0;
     // console.log(this.vx);
     ctx.fillRect(634, 495, 30, 5);
     ctx.fillRect(271, 495, 30, 5);
     this.arr.forEach(randomX => {
       ctx.drawImage(this.spike2, randomX, 400, 30, 100);
-      ctx.drawImage(this.spike3, randomX, 100, 30, 100);
+      ctx.drawImage(this.spike4, randomX, 0, 30, 100);
     });
     this.gravitySpeed += this.gravity;
     this.vx *= this.friction;
@@ -87,11 +86,26 @@ class Duck {
     requestAnimationFrame(this.drawDuck);
   }
 
+  collisionDetection() {
+    const ctx = this.ctx;
+    this.arr.forEach(obstacleX => {
+      if (  (this.posX > obstacleX) && 
+            (this.posX < obstacleX + 30) &&
+            (this.posY > 400) &&
+            (this.posY < 500) 
+      ){
+        this.vx = 0;
+        ctx.drawImage(this.blood, this.posX - 250, 0, 900, 400);
+        this.gameOver(this.score);
+      }
+    });
+  }
+
   gameOver(score) {
     this.over = true;
     const ctx = this.ctx;
-    ctx.font = "30px bolder status-bar";
-    ctx.fillText("Final Score: " + score, this.posX, 200);
+    ctx.font = "25px bolder status-bar";
+    ctx.fillText("Final Score: " + score, this.posX + 50, 200);
     setTimeout(this.reload, 3000);
   }
 

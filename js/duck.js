@@ -27,11 +27,11 @@ class Duck {
     this.over = false;
 
     this.arr = [];
-    const times = 5;
+    const times = 12;
     for (let i = 0; i < times; i++) {
-      this.arr.push(Math.floor((Math.random() * (10000 - 1000) + 1000)));
+      this.arr.push(Math.floor((Math.random() * (10000 - 500) + 500)));
     }
-
+    console.log(this.arr);
     this.drawDuck = this.drawDuck.bind(this);
     this.drawDuck();
   }
@@ -52,31 +52,31 @@ class Duck {
   }
 
   drawDuck() {
+    if(this.over) return null;
     const ctx = this.ctx;
     this.score = Math.floor(this.posX - this.startX);
     const pastXPos = this.posX - this.vx;
     const pastYPos = this.posY - this.vy - this.gravitySpeed;
     ctx.clearRect(pastXPos, pastYPos, 10000, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
-    // if (this.arr.includes(Math.floor(this.posX))) {
-    //   // debugger
-    //   this.gameOver(this.score);
-    // }
-    this.arr.forEach(randomX => {
-      ctx.drawImage(this.spike1, randomX, 440, 30, 60);
-    });
+    if (this.arr.includes(Math.floor(this.posX)) && this.posY >= 340) {
+      this.vx = 0;
+      this.gameOver(this.score);
+    }
+    // if (this.over) this.vx = 0;
+    // console.log(this.vx);
     ctx.fillRect(634, 495, 30, 5);
     ctx.fillRect(271, 495, 30, 5);
+    this.arr.forEach(randomX => {
+      ctx.drawImage(this.spike2, randomX, 400, 30, 100);
+      ctx.drawImage(this.spike3, randomX, 100, 30, 100);
+    });
     this.gravitySpeed += this.gravity;
     this.vx *= this.friction;
     this.vy *= this.friction;
     this.posX += this.vx;
     this.posY += this.vy  + this.gravitySpeed;
     this.hitBottom();
-    if (this.over) {
-      cancelAnimationFrame(this.drawDuck);
-      return null;
-    }
     ctx.fillstyle = "black";
     ctx.font = "25px status-bar";
     // ctx.clearRect(this.posX - 250, 20, 10000, 500);
@@ -87,25 +87,11 @@ class Duck {
     requestAnimationFrame(this.drawDuck);
   }
 
-  // drawObstacle() {
-  //   // const ctx = this.ctx;
-  //   // const screenLeft = this.posX - 250;
-  //   // const screenRight = this.posX + 250;
-  //   // const randomX = Math.floor((Math.random() * (10000) + 1));
-  //   // // ctx.fillRect(randomX, 495, 30, 5);
-  //   // // ctx.fillRect(randomX + 50, 495, 30, 5);
-  //   // ctx.drawImage(this.spike1, randomX, 440, 30, 60);
-  //   // console.log("SPIKE Created");
-  //   // console.log(Math.floor((Math.random() * ((this.posX + 250) + (this.posX - 250)) + (this.posX - 250))));
-  // }
-
   gameOver(score) {
     this.over = true;
-    this.vx = 0;
     const ctx = this.ctx;
     ctx.font = "30px bolder status-bar";
     ctx.fillText("Final Score: " + score, this.posX, 200);
-    // clearInterval(this.obstacleInterval);
     setTimeout(this.reload, 3000);
   }
 

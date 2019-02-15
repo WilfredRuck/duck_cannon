@@ -8,7 +8,7 @@ class Duck {
     this.posY = startY;
     this.friction = 0.999;
     this.power = power;
-    this.vx = this.power; // velocity of x axis (should be determined by power level when launched)
+    this.vx = 30; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
     this.gravity = 0.1; 
     this.gravitySpeed = 0.5;
@@ -32,7 +32,7 @@ class Duck {
     this.over = false;
 
     this.arr = [];
-    const times = 5;
+    const times = 0;
     for (let i = 0; i < times; i++) {
       this.arr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
     }
@@ -107,8 +107,22 @@ class Duck {
     if (this.posX >= (this.ctx.canvas.width)) {
       this.avoidanceBonus += 3000;
       this.vx = 0;
-      this.gameOver(this.score)
+      this.finishLevel(this.score)
     }
+  }
+
+  finishLevel(score) {
+    this.over = true;
+    const ctx = this.ctx;
+    ctx.font = "25px bold status-bar";
+    ctx.fillStyle = "black";
+    ctx.fillText("Score: " + score, this.posX - 300, 120);
+    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX - 300, 140);
+    ctx.font = "30px bolder status-bar";
+    ctx.fillText("Final Score: " + (score + this.avoidanceBonus), this.posX - 300, 170);
+    ctx.fillStyle = "red";
+    ctx.fillText("LEVEL COMPLETE!", this.posX - 300, 200);
+    setTimeout(this.reload, 3000);
   }
 
   gameOver(score) {

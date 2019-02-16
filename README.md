@@ -2,7 +2,7 @@
 
 ## Background and Overview
 
-Duckannon is a game where the player shoots a duck out of a cannon and gains a score based on how far they get. There will be different factors in play, such as the angle of the cannon before release, and the power level at time of launch(which will be displayed as it randomly increases and decreases). The goal is to find the best combination of angle and power to obtain the furthest distance. There will also be various obstacles the duck may interact with as it bounces that will affect where the duck ends up stopping.
+Duckannon is a JavaScript game where the player shoots a duck out of a cannon and gains a score based on how far they get. There are different factors in play, such as the power level at the time of launch and obstacles the duck may interact with. The goal is to obtain the furthest distance.
     
 ## Functionality and MVP Features
   

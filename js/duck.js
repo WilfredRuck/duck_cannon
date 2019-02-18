@@ -19,7 +19,7 @@ class Duck {
     this.image = new Image();
     this.bg = new Image();
     this.spike1 = new Image();
-    this.spike2 = new Image();
+    this.spike = new Image();
     this.spike3 = new Image();
     this.spike4 = new Image();
     this.blood = new Image();
@@ -28,24 +28,21 @@ class Duck {
     this.explosion = new Image();
     this.image.src = "https://i.ibb.co/vB4TtWT/storm-designz-rubber-duck.png";
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
-    this.spike1.src = "spike A.png";
-    this.spike2.src = "spike B.png";
-    this.spike3.src = "spike C.png";
-    this.spike4.src = "spike D.png";
+    this.spike.src = "spike.png";
     this.blood.src = "blood.png";
     this.troll.src = "troll.png";
     this.bomb.src = "bomb.png";
     this.explosion.src = "explosion1.png";
-    this.explosionSound = new Audio("explosion.mp3");
-    this.waterSound = new Audio("water.mp3");
+    this.explosionSound = new Audio("explosionBomb.mp3");
+    this.waterSound = new Audio("duck.wav");
     this.over = false;
     this.spikeArr = [];
     this.bombArr = [];
-    let times = 15;
+    let times = 10;
     for (let i = 0; i < times; i++) {
       this.spikeArr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
     }
-    times = 3;
+    times = 5;
     for (let i = 0; i < times; i++) {
       this.bombArr.push(Math.floor((Math.random() * (9800 - 500) + 500)));
     }
@@ -82,7 +79,7 @@ class Duck {
     this.collisionDetection();
     
     this.spikeArr.forEach(randomX => {
-      ctx.drawImage(this.spike2, randomX, 420, 30, 100);
+      ctx.drawImage(this.spike, randomX, 420, 30, 100);
       ctx.drawImage(this.troll, randomX, 0, 50, 60);
     });
 
@@ -109,7 +106,6 @@ class Duck {
   collisionDetection() {
     const ctx = this.ctx;
     this.spikeArr.forEach(obstacleX => {
-      // ctx.drawImage(this.spike2, randomX, 420, 30, 100);
       if (  (this.posX < obstacleX + 30) &&
             (this.posX + 20 > obstacleX) &&
             (this.posY < 520) &&
@@ -128,8 +124,10 @@ class Duck {
             (this.posY < 350) &&
             (this.posY + 60 > 300)
       ){
-        this.vx += 0.25;
-        this.friction += 0.0003;
+        this.vx += 0.2;
+        this.friction += 0.0002;
+        this.gravitySpeed = -(this.gravitySpeed * this.bounce);
+        // this.gravity
         this.bombBonus += 200;
         this.explosionSound.playSound();
         ctx.drawImage(this.explosion, obstacleX, this.posY, 200, 200);

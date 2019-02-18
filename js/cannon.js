@@ -1,4 +1,5 @@
 import Duck from './duck.js';
+import Audio from './audio.js';
 
 class Cannon {
   constructor(ctx, color = "grey") {
@@ -6,6 +7,7 @@ class Cannon {
     this.ctx = ctx;
     this.bg = new Image();
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
+    this.explosionSound = new Audio("explosion.mp3");
     this.cannonArm = this.cannonArm.bind(this);
     this.play();
     this.changePower = -1;
@@ -43,6 +45,7 @@ class Cannon {
   shoot() {
     this.endKeypress();
     clearInterval(this.cannonInterval);
+    this.explosionSound.playSound();
     new Duck(this.ctx, 150, 250, (500 - this.currentPower));
   }
 

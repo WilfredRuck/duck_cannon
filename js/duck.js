@@ -1,3 +1,5 @@
+import Audio from './audio.js';
+
 class Duck {
   constructor(ctx, startX, startY, power) {
     this.ctx = ctx;
@@ -33,6 +35,8 @@ class Duck {
     this.troll.src = "troll.png";
     this.bomb.src = "bomb.png";
     this.explosion.src = "explosion1.png";
+    this.explosionSound = new Audio("explosion.mp3");
+    this.waterSound = new Audio("water.mp3");
     this.over = false;
     this.spikeArr = [];
     this.bombArr = [];
@@ -111,6 +115,7 @@ class Duck {
             (this.posY + 40 > 420) 
       ){
         this.vx = 0;
+        this.waterSound.playSound();
         ctx.drawImage(this.blood, this.posX - 250, 300, 900, 400);
         this.gameOver(this.score);
       }
@@ -124,6 +129,7 @@ class Duck {
       ){
         this.vx += 0.25;
         this.friction += 0.0003;
+        this.explosionSound.playSound();
         ctx.drawImage(this.explosion, obstacleX, this.posY, 200, 200);
       }
     });

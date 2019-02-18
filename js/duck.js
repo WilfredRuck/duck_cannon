@@ -73,12 +73,11 @@ class Duck {
     const pastYPos = this.posY - this.vy - this.gravitySpeed;
     ctx.clearRect(pastXPos, pastYPos, 10000, 500);
     ctx.drawImage(this.image, this.posX, this.posY, 30, 60);
-    
+    ctx.drawImage(this.troll, 9600, 0, 50, 60);
     this.collisionDetection();
     
     this.spikeArr.forEach(randomX => {
       ctx.drawImage(this.spike, randomX, 420, 30, 100);
-      ctx.drawImage(this.troll, randomX, 0, 50, 60);
     });
 
     this.bombArr.forEach(randomX => {
@@ -93,10 +92,10 @@ class Duck {
     this.hitBottom();
     ctx.fillstyle = "black";
     ctx.font = "25px status-bar";
-    // ctx.clearRect(this.posX - 200, 20, 10000, 500);
-    // ctx.clearRect(this.posX, 40, 10000, 500);
-    // ctx.fillText("Score: " + this.score, this.posX - 200, 20);
-    // ctx.fillText("Power: " + this.power + "/30", this.posX - 200, 40);
+    ctx.clearRect(this.posX - 320, 0, 320, 100);
+    ctx.fillText("Score: " + this.score, this.posX - 250, 20);
+    ctx.fillText("Bonus: " + this.bombBonus, this.posX - 250, 40);
+    ctx.fillText("Power: " + this.power + "/30", this.posX - 250, 60);
     this.scrollWrapper();
     requestAnimationFrame(this.drawDuck);
   }
@@ -143,10 +142,11 @@ class Duck {
   finishLevel(score) {
     this.over = true;
     const ctx = this.ctx;
+    ctx.clearRect(this.posX - 320, 0, 300, 100);
     ctx.font = "25px bold status-bar";
     ctx.fillStyle = "black";
     ctx.fillText("Score: " + score, this.posX - 300, 100);
-    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX - 300, 120);
+    ctx.fillText("Finished: " + this.avoidanceBonus, this.posX - 300, 120);
     ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX - 300, 140);
     ctx.font = "30px bolder status-bar";
     ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX - 300, 190);
@@ -161,7 +161,7 @@ class Duck {
     ctx.font = "25px bold status-bar";
     ctx.fillStyle = "black";
     ctx.fillText("Score: " + score, this.posX, 100);
-    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX, 120);
+    ctx.fillText("Alive Bonus " + this.avoidanceBonus, this.posX, 120);
     ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX, 140);
     ctx.font = "30px bolder status-bar";
     ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX, 190);

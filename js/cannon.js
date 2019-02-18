@@ -36,7 +36,7 @@ class Cannon {
   }
 
   play() {
-    document.addEventListener("keydown", this.cannonArm.bind(this), false);
+    document.addEventListener("keydown", this.cannonArm.bind(this));
   }
 
   shoot() {
@@ -46,7 +46,7 @@ class Cannon {
   }
 
   endKeypress() {
-    document.removeEventListener("keydown", this.cannonArm.bind(this), false)
+    document.removeEventListener("keydown", this.cannonArm.bind(this));
   }
 
   cannonArm(e) {

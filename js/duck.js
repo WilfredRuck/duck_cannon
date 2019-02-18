@@ -21,22 +21,29 @@ class Duck {
     this.spike4 = new Image();
     this.blood = new Image();
     this.troll = new Image();
+    this.bomb = new Image();
+    this.explosion = new Image();
+    this.image.src = "https://i.ibb.co/vB4TtWT/storm-designz-rubber-duck.png";
+    this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
     this.spike1.src = "spike A.png";
     this.spike2.src = "spike B.png";
     this.spike3.src = "spike C.png";
     this.spike4.src = "spike D.png";
     this.blood.src = "blood.png";
     this.troll.src = "troll.png";
-    this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
-    this.image.src = "https://i.ibb.co/vB4TtWT/storm-designz-rubber-duck.png";
+    this.bomb.src = "bomb.png";
+    this.explosion.src = "explosion1.png";
     this.over = false;
-
-    this.arr = [];
-    const times = 5;
+    this.spikeArr = [];
+    this.bombArr = [];
+    let times = 3;
     for (let i = 0; i < times; i++) {
-      this.arr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
+      this.spikeArr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
     }
-    console.log(this.arr);
+    times = 3;
+    for (let i = 0; i < times; i++) {
+      this.bombArr.push(Math.floor((Math.random() * (9800 - 500) + 500)));
+    }
     this.drawDuck = this.drawDuck.bind(this);
     this.drawDuck();
   }
@@ -60,7 +67,6 @@ class Duck {
 
   drawDuck() {
     if (this.over) return null;
-    console.log(this.posX);
     const ctx = this.ctx;
     this.score = Math.floor(this.posX - this.startX);
     const pastXPos = this.posX - this.vx;
@@ -70,9 +76,13 @@ class Duck {
     
     this.collisionDetection();
     
-    this.arr.forEach(randomX => {
-      ctx.drawImage(this.spike2, randomX, 400, 30, 100);
+    this.spikeArr.forEach(randomX => {
+      ctx.drawImage(this.spike2, randomX, 420, 30, 100);
       ctx.drawImage(this.troll, randomX, 0, 50, 60);
+    });
+
+    this.bombArr.forEach(randomX => {
+      ctx.drawImage(this.bomb, randomX, 300, 40, 50);
     });
 
     this.gravitySpeed += this.gravity;
@@ -93,17 +103,31 @@ class Duck {
 
   collisionDetection() {
     const ctx = this.ctx;
-    this.arr.forEach(obstacleX => {
-      if (  (this.posX > obstacleX) && 
-            (this.posX < obstacleX + 30) &&
-            (this.posY > 400) &&
-            (this.posY < 500) 
+    this.spikeArr.forEach(obstacleX => {
+      // ctx.drawImage(this.spike2, randomX, 420, 30, 100);
+      if (  (this.posX < obstacleX + 30) && 
+            (this.posX + 20 > obstacleX) &&
+            (this.posY < 520) &&
+            (this.posY + 40 > 420) 
       ){
         this.vx = 0;
         ctx.drawImage(this.blood, this.posX - 250, 300, 900, 400);
         this.gameOver(this.score);
       }
     });
+
+    this.bombArr.forEach(obstacleX => {
+      if (  (this.posX < obstacleX + 40) && 
+            (this.posX + 30 > obstacleX) &&
+            (this.posY < 350) &&
+            (this.posY + 60 > 300)
+      ){
+        this.vx += 0.25;
+        this.friction += 0.0003;
+        ctx.drawImage(this.explosion, obstacleX, this.posY, 200, 200);
+      }
+    });
+
     if (this.posX >= (this.ctx.canvas.width)) {
       this.avoidanceBonus += 3000;
       this.vx = 0;

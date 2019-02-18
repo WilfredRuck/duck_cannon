@@ -5,6 +5,7 @@ class Duck {
     this.ctx = ctx;
     this.score = 0;
     this.avoidanceBonus = 0;
+    this.bombBonus = 0;
     this.startX = startX;
     this.posX = startX;
     this.posY = startY;
@@ -12,7 +13,7 @@ class Duck {
     this.power = power;
     this.vx = this.power; // velocity of x axis (should be determined by power level when launched)
     this.vy = -4; // velocity of y axis (should be determined by cannon arm angle)
-    this.gravity = 0.1; 
+    this.gravity = 0.1;
     this.gravitySpeed = 0.5;
     this.bounce = 0.3;
     this.image = new Image();
@@ -40,7 +41,7 @@ class Duck {
     this.over = false;
     this.spikeArr = [];
     this.bombArr = [];
-    let times = 3;
+    let times = 15;
     for (let i = 0; i < times; i++) {
       this.spikeArr.push(Math.floor((Math.random() * (9800 - 1000) + 1000)));
     }
@@ -109,10 +110,10 @@ class Duck {
     const ctx = this.ctx;
     this.spikeArr.forEach(obstacleX => {
       // ctx.drawImage(this.spike2, randomX, 420, 30, 100);
-      if (  (this.posX < obstacleX + 30) && 
+      if (  (this.posX < obstacleX + 30) &&
             (this.posX + 20 > obstacleX) &&
             (this.posY < 520) &&
-            (this.posY + 40 > 420) 
+            (this.posY + 40 > 420)
       ){
         this.vx = 0;
         this.waterSound.playSound();
@@ -122,13 +123,14 @@ class Duck {
     });
 
     this.bombArr.forEach(obstacleX => {
-      if (  (this.posX < obstacleX + 40) && 
+      if (  (this.posX < obstacleX + 40) &&
             (this.posX + 30 > obstacleX) &&
             (this.posY < 350) &&
             (this.posY + 60 > 300)
       ){
         this.vx += 0.25;
         this.friction += 0.0003;
+        this.bombBonus += 200;
         this.explosionSound.playSound();
         ctx.drawImage(this.explosion, obstacleX, this.posY, 200, 200);
       }
@@ -146,12 +148,13 @@ class Duck {
     const ctx = this.ctx;
     ctx.font = "25px bold status-bar";
     ctx.fillStyle = "black";
-    ctx.fillText("Score: " + score, this.posX - 300, 120);
-    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX - 300, 140);
+    ctx.fillText("Score: " + score, this.posX - 300, 100);
+    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX - 300, 120);
+    ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX - 300, 140);
     ctx.font = "30px bolder status-bar";
-    ctx.fillText("Final Score: " + (score + this.avoidanceBonus), this.posX - 300, 170);
+    ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX - 300, 190);
     ctx.fillStyle = "red";
-    ctx.fillText("LEVEL COMPLETE!", this.posX - 300, 200);
+    ctx.fillText("LEVEL COMPLETE!", this.posX - 300, 220);
     setTimeout(this.reload, 3000);
   }
 
@@ -160,10 +163,11 @@ class Duck {
     const ctx = this.ctx;
     ctx.font = "25px bold status-bar";
     ctx.fillStyle = "black";
-    ctx.fillText("Score: " + score, this.posX, 120);
-    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX, 140);
+    ctx.fillText("Score: " + score, this.posX, 100);
+    ctx.fillText("Alive Bonus: " + this.avoidanceBonus, this.posX, 120);
+    ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX, 140);
     ctx.font = "30px bolder status-bar";
-    ctx.fillText("Final Score: " + (score + this.avoidanceBonus), this.posX, 170);
+    ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX, 190);
     setTimeout(this.reload, 3000);
   }
 

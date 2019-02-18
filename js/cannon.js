@@ -6,17 +6,18 @@ class Cannon {
     this.ctx = ctx;
     this.bg = new Image();
     this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
+    this.cannonArm = this.cannonArm.bind(this);
     this.play();
     this.changePower = -1;
     this.currentPower = 500;
-    this.drawCannon();
     this.cannonInterval = setInterval(() => this.drawCannon(), 10);
+    this.drawCannon();
   }
 
   drawCannon() {
     const ctx = this.ctx;
     ctx.clearRect(0, 0, 10000, 400);
-    // cannon arm (movable)
+    // cannon arm
     ctx.fillStyle = "#000";
     ctx.fillRect(50, 300, 100, 50);
     // cannon body
@@ -36,7 +37,7 @@ class Cannon {
   }
 
   play() {
-    document.addEventListener("keydown", this.cannonArm.bind(this));
+    document.addEventListener("keydown", this.cannonArm);
   }
 
   shoot() {
@@ -46,7 +47,7 @@ class Cannon {
   }
 
   endKeypress() {
-    document.removeEventListener("keydown", this.cannonArm.bind(this));
+    document.removeEventListener("keydown", this.cannonArm);
   }
 
   cannonArm(e) {

@@ -18,10 +18,7 @@ class Duck {
     this.bounce = 0.3;
     this.image = new Image();
     this.bg = new Image();
-    this.spike1 = new Image();
     this.spike = new Image();
-    this.spike3 = new Image();
-    this.spike4 = new Image();
     this.blood = new Image();
     this.troll = new Image();
     this.bomb = new Image();
@@ -35,6 +32,7 @@ class Duck {
     this.explosion.src = "explosion1.png";
     this.explosionSound = new Audio("explosionBomb.mp3");
     this.waterSound = new Audio("duck.wav");
+    this.cheerSound = new Audio("cheer.mp3");
     this.over = false;
     this.spikeArr = [];
     this.bombArr = [];
@@ -126,7 +124,7 @@ class Duck {
       ){
         this.vx += 0.2;
         this.friction += 0.0002;
-        this.gravitySpeed = -(this.gravitySpeed * this.bounce);
+        this.gravitySpeed = -(this.gravitySpeed * (this.bounce + 0.2));
         // this.gravity
         this.bombBonus += 200;
         this.explosionSound.playSound();
@@ -137,6 +135,7 @@ class Duck {
     if (this.posX >= (this.ctx.canvas.width)) {
       this.avoidanceBonus += 3000;
       this.vx = 0;
+      this.cheerSound.playSound();
       this.finishLevel(this.score)
     }
   }
@@ -153,7 +152,7 @@ class Duck {
     ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX - 300, 190);
     ctx.fillStyle = "red";
     ctx.fillText("LEVEL COMPLETE!", this.posX - 300, 220);
-    setTimeout(this.reload, 3000);
+    setTimeout(this.reload, 5000);
   }
 
   gameOver(score) {

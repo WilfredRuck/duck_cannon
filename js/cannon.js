@@ -33,9 +33,13 @@ class Cannon {
     ctx.font = "15px status-bar";
     ctx.fillStyle = "red";
     ctx.fillRect(20, this.currentPower, 20, 230);
+
     const pow = this.currentPower + this.changePower;
     if ((pow === 469) || (pow === 501)) this.changePower = -(this.changePower);
     this.currentPower += this.changePower;
+    ctx.fillstyle = "black";
+    ctx.font = "25px status-bar";
+    ctx.fillText("Score: 0", 0, 20);
   }
 
   play() {

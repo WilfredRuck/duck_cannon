@@ -31,7 +31,7 @@ class Duck {
     this.bomb.src = "bomb.png";
     this.explosion.src = "explosion1.png";
     this.explosionSound = new Audio("explosionBomb.mp3");
-    this.waterSound = new Audio("duck.wav");
+    this.duckSound = new Audio("duck.wav");
     this.cheerSound = new Audio("cheer.mp3");
     this.over = false;
     this.spikeArr = [];
@@ -109,8 +109,8 @@ class Duck {
             (this.posY + 40 > 420)
       ){
         this.vx = 0;
-        this.waterSound.playSound();
-        ctx.drawImage(this.blood, this.posX - 250, 300, 900, 400);
+        this.duckSound.playSound();
+        // ctx.drawImage(this.blood, this.posX - 250, 300, 900, 400);
         this.gameOver(this.score);
       }
     });

@@ -6,8 +6,8 @@ class Cannon {
     this.color = color;
     this.ctx = ctx;
     this.bg = new Image();
-    this.bg.src = "https://i.ibb.co/YBqBGyX/grass-background.jpg";
-    this.explosionSound = new Audio("explosion.mp3");
+    this.bg.src = "./images/grass-background.jpg";
+    this.explosionSound = new Audio("./audio/explosion.mp3");
     this.cannonArm = this.cannonArm.bind(this);
     this.play();
     this.changePower = -1;

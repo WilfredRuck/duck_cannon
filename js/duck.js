@@ -92,7 +92,7 @@ class Duck {
     this.hitBottom();
     ctx.fillstyle = "black";
     ctx.font = "25px status-bar";
-    ctx.clearRect(this.posX - 320, 0, 320, 100);
+    ctx.clearRect(this.posX - 320, 0, 200, 100);
     ctx.fillText("Score: " + this.score, this.posX - 250, 20);
     ctx.fillText("Bonus: " + this.bombBonus, this.posX - 250, 40);
     ctx.fillText("Power: " + this.power + "/30", this.posX - 250, 60);
@@ -166,6 +166,10 @@ class Duck {
     ctx.font = "30px bolder status-bar";
     ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX, 190);
     setTimeout(this.reload, 3000);
+  }
+
+  restartGame() {
+
   }
 
   reload() {

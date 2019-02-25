@@ -98,7 +98,7 @@ class Duck {
     this.posY += this.vy  + this.gravitySpeed;
     this.hitBottom();
     ctx.fillstyle = "black";
-    ctx.font = "25px status-bar";
+    ctx.font = "22px arial";
     ctx.fillText("Score: " + this.score, this.posX - 250, 20);
     ctx.fillText("Bonus: " + this.bombBonus, this.posX - 250, 40);
     ctx.fillText("Power: " + this.power + "/30", this.posX - 250, 60);
@@ -149,29 +149,29 @@ class Duck {
     this.over = true;
     this.restartGame();
     const ctx = this.ctx;
-    ctx.font = "25px bold status-bar";
+    ctx.font = "25px bold arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Score: " + score, this.posX - 300, 100);
-    ctx.fillText("Finished: " + this.avoidanceBonus, this.posX - 300, 120);
-    ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX - 300, 140);
-    ctx.font = "30px bolder status-bar";
-    ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX - 300, 190);
+    ctx.fillText("Score: " + score, this.posX - 350, 120);
+    ctx.fillText("Finished: " + this.avoidanceBonus, this.posX - 350, 140);
+    ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX - 350, 160);
+    ctx.font = "30px bolder arial";
+    ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX - 350, 210);
     ctx.fillStyle = "red";
-    ctx.fillText("LEVEL COMPLETE!", this.posX - 300, 220);
+    ctx.fillText("LEVEL COMPLETE!", this.posX - 350, 240);
     ctx.fillStyle = "#18ECFE";
-    ctx.fillText("Press Spacebar to restart", this.posX - 300, 350);
+    ctx.fillText("Press Spacebar to restart", this.posX - 350, 370);
   }
 
   gameOver(score) {
     this.over = true;
     this.restartGame();
     const ctx = this.ctx;
-    ctx.font = "25px bolder status-bar";
+    ctx.font = "25px bolder arial";
     ctx.fillStyle = "black";
     ctx.fillText("Score: " + score, this.posX, 100);
     ctx.fillText("Alive Bonus " + this.avoidanceBonus, this.posX, 120);
     ctx.fillText("Bomb Bonus: " + this.bombBonus, this.posX, 140);
-    ctx.font = "30px bolder status-bar";
+    ctx.font = "30px bolder arial";
     ctx.fillText("Final Score: " + (score + this.avoidanceBonus + this.bombBonus), this.posX, 190);
     ctx.fillStyle = "#18ECFE";
     ctx.clearRect(this.posX, 350, 30, 30);

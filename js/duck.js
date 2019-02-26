@@ -116,7 +116,6 @@ class Duck {
       ){
         this.vx = 0;
         this.duckSound.playSound();
-        // ctx.drawImage(this.blood, this.posX - 250, 300, 900, 400);
         this.gameOver(this.score);
       }
     });
@@ -130,7 +129,6 @@ class Duck {
         this.vx += 0.2;
         this.friction += 0.0002;
         this.gravitySpeed = -(this.gravitySpeed * (this.bounce + 0.2));
-        // this.gravity
         this.bombBonus += 200;
         this.explosionSound.playSound();
         ctx.drawImage(this.explosion, obstacleX, this.posY, 200, 200);

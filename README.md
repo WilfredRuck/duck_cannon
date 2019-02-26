@@ -1,6 +1,6 @@
 # Duckannon
 
-<a href="https://www.willthecoder.com/duckannon">Duckannon</a> is an addictive browser-based side-scroller game utilizing JavaScript with HTML5 canvas for rendering and collision detection. To make the game more realistic, I built a custom physics engine to implement friction, gravity, and velocity. The player shoots a duck out of a cannon and gains a score based on how far they get.There are different factors in play, such as the power level at the time of launch and obstacles the duck may interact with. The goal is to obtain the furthest distance/score.
+<a href="https://www.willthecoder.com/duckannon">Duckannon</a> is an addictive browser-based side-scroller game utilizing JavaScript with HTML5 canvas for rendering and collision detection. To make the game more realistic, I built a custom physics engine to implement friction, gravity, and velocity. The player shoots a duck out of a cannon and gains a score based on how far they get. There are different factors in play, such as the power level at the time of launch and obstacles the duck may interact with. The goal is to obtain the furthest distance/score.
 
 
 ## Screenshots

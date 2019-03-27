@@ -27,10 +27,10 @@ class Cannon {
     ctx.fillRect(0, 250, 60, 250);
     ctx.fillStyle = "#fff";
     // cannon power
-    ctx.font = "20px status-bar";
-    ctx.fillText("Power", 5, 400);
-    ctx.fillText("Level", 5, 420);
-    ctx.font = "15px status-bar";
+    ctx.font = "20px arial";
+    ctx.fillText("Power", 2, 400);
+    ctx.fillText("Level", 2, 420);
+    ctx.font = "15px arial";
     ctx.fillStyle = "red";
     ctx.fillRect(20, this.currentPower, 20, 230);
 
@@ -38,7 +38,7 @@ class Cannon {
     if ((pow === 469) || (pow === 501)) this.changePower = -(this.changePower);
     this.currentPower += this.changePower;
     ctx.fillstyle = "black";
-    ctx.font = "25px status-bar";
+    ctx.font = "25px arial";
     ctx.fillText("Score: 0", 0, 20);
   }
 

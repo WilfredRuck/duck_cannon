@@ -4,6 +4,10 @@ Launch a rubber duck from a cannon, catch glowing boost orbs, and see how far yo
 
 Duckannon is a browser arcade game built with JavaScript, HTML5 Canvas, and CSS. This version gives the original game a brighter meadow design, a clearer scoreboard, and a smoother play-and-retry loop.
 
+## Preview
+
+![Duckannon meadow design with the duck tucked into the cannon](images/duckannon-preview.png)
+
 ## Play locally
 
 No build step or dependency installation is required. From the repository folder, run:

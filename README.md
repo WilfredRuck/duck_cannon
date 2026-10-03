@@ -29,6 +29,12 @@ Open [Duckannon locally](http://127.0.0.1:8765/).
 
 Your final score combines distance and boost bonuses. Your best score is saved in the current browser using local storage.
 
+## The original project
+
+[The original Duckannon project](https://github.com/WilfredRuck/duck_cannon) was created by [WilfredRuck](https://github.com/WilfredRuck) as a JavaScript and HTML5 Canvas side-scroller. Players launched a rubber duck from a cannon and earned points for distance, with custom gravity, friction, bouncing, and collision detection. Bombs provided boosts, while spikes ended the run.
+
+This update builds on that original idea and retains its rubber-duck artwork and launch-timing gameplay. The changes below refresh the presentation and play experience, including replacing bomb pickups with glowing orbs.
+
 ## What's new
 
 - Cream-and-green interface with the game at the center.

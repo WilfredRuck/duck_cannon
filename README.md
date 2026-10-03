@@ -54,6 +54,36 @@ this.posY += this.vy  + this.gravitySpeed;
 this.hitBottom();
 ```
 
+#### Latest-version improvements
+
+The latest version keeps the original gravity, friction, and bounce concept, but scales motion by elapsed frame time. The animation loop calculates `dt` relative to a 60 Hz frame and caps it at two frames to limit sudden jumps after a delay. Gravity and position updates use this value, while friction uses `Math.pow(.999, dt)`. This reduces the dependence of flight speed on rendering frame rate; the cap deliberately limits simulation catch-up during longer pauses.
+
+Launch power now affects both horizontal speed and upward velocity, so a stronger launch produces a higher, longer flight. Ground contact clamps the duck above the meadow surface, reverses its vertical velocity with a `0.48` bounce multiplier, and reduces horizontal speed by multiplying it by `0.86`. The flight ends once horizontal speed falls below `1.2`, allowing each bounce to lose energy until the duck settles.
+
+The core updates in `js/entry.js` are:
+
+```JavaScript
+const dt = Math.min(2, (t - last) / 16.667 || 1);
+last = t;
+
+// At launch: power ranges from 0 to 100.
+vx = 6 + power * .25;
+vy = -7 - power * .065;
+
+// During flight.
+vx *= Math.pow(.999, dt);
+vy += .16 * dt;
+x += vx * dt;
+y += vy * dt;
+
+if (y > ground - 25) {
+  y = ground - 25;
+  vy = -Math.abs(vy) * .48;
+  vx *= .86;
+  if (vx < 1.2) finish('rest');
+}
+```
+
 ### Collision Detection
 
 Collision detection was fun to implement because different obstacles required different outcomes. Obstacles are all given a random X-axis position and then put in their respective arrays. In the `collisionDetection()` function, I iterate over these arrays and run certain actions if the duck's current dimensions overlap the obstacle's dimension. If the obstacle is a bomb, I increase the velocity of the duck and negate the gravity speed so that a mid-air bounce is created.
@@ -96,6 +126,31 @@ collisionDetection() {
     }
 }
 ```
+
+#### Latest-version improvements
+
+Bomb pickups have become floating boost orbs. Collision checks use the same animated vertical position as the rendered orb, keeping the pickup region aligned as it moves up and down. Each orb has a `used` flag, so collecting it grants its boost and 200-point bonus only once, even if the duck overlaps it for several frames.
+
+A pickup adds horizontal speed up to a cap of `34` and sets vertical velocity to `-9` for an upward lift. It also triggers a particle burst and the new orb chime. Spike checks account for the duck's horizontal extent and its lower edge relative to the spike tips. Hitting a spike ends the flight and shows the results overlay; reaching the end of the course also completes the flight. The shared `finish()` function guards against repeated results processing once the flight has ended.
+
+The orb pickup logic in `js/entry.js` is:
+
+```JavaScript
+for (const b of boosts) {
+  const orbY = b.y + Math.sin(t * .003 + b.x) * 6;
+  if (!b.used && Math.abs(x - b.x) < 35 && Math.abs(y - orbY) < 43) {
+    b.used = true;
+    vx = Math.min(34, vx + 4);
+    vy = -9;
+    bonus += 200;
+    burst(b.x, b.y, 22, '#f0d389');
+    sound('boost');
+    $('status').textContent = 'BOOST +200';
+  }
+}
+```
+
+These remain simple overlap checks rather than pixel-perfect or swept collisions. They keep the implementation lightweight, while the single-use pickup state fixes the original possibility of awarding a bonus repeatedly during one overlap.
 
 ### Future Features
 
